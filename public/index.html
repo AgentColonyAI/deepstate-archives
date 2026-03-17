@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DEEP STATE ARCHIVES // DSA-1974</title>
+<link href="https://fonts.googleapis.com/css2?family=VT323&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 100%; height: 100%; overflow: hidden; background: #000; font-family: 'VT323', monospace; }
+
+/* ── ROOM ── */
+.room {
+  position: fixed; inset: 0;
+  background-color: #0c0a08;
+  background-image:
+    linear-gradient(180deg, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.35) 18%, transparent 35%),
+    linear-gradient(0deg, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.4) 18%, transparent 35%),
+    linear-gradient(90deg, rgba(0,0,0,0.7) 0%, transparent 22%),
+    linear-gradient(270deg, rgba(0,0,0,0.7) 0%, transparent 22%),
+    radial-gradient(ellipse 70% 55% at 50% 42%, rgba(0,255,65,0.04) 0%, transparent 100%),
+    repeating-linear-gradient(0deg, transparent, transparent 48px, rgba(0,0,0,0.1) 48px, rgba(0,0,0,0.1) 50px),
+    repeating-linear-gradient(90deg, transparent, transparent 96px, rgba(255,255,255,0.01) 96px, rgba(255,255,255,0.01) 97px),
+    radial-gradient(ellipse 120% 80% at 50% 50%, #1a1410 0%, #0e0c0a 60%, #080604 100%);
+}
+.pipe { position: absolute; }
+.p1 { left: 7%;  width: 3px; height: 100vh; background: linear-gradient(90deg,#252018,#352a20,#252018); opacity:.35; }
+.p2 { left: 18%; width: 2px; height: 100vh; background: linear-gradient(90deg,#1a1810,#252018,#1a1810); opacity:.25; }
+.p3 { right: 8%; width: 3px; height: 100vh; background: linear-gradient(90deg,#252018,#352a20,#252018); opacity:.35; }
+.p4 { right: 19%;width: 2px; height: 100vh; background: linear-gradient(90deg,#1a1810,#252018,#1a1810); opacity:.25; }
+.cp { position:absolute; top:20px; left:0; right:0; height:12px; background:linear-gradient(180deg,#302820,#201810); opacity:.45; }
+.desk { position:absolute; bottom:0; left:0; right:0; height:26%; background:linear-gradient(180deg,#1e1608,#0e0c08); border-top:1px solid rgba(70,50,15,0.25); }
+.paper { position:absolute; font-family:'Share Tech Mono',monospace; font-size:5.5px; color:rgba(30,20,5,.65); line-height:1.6; padding:6px; overflow:hidden; }
+.paper { background:linear-gradient(135deg,#d8cfa8,#c8b888); box-shadow:2px 3px 8px rgba(0,0,0,.55); }
+.pa { bottom:3%; left:3%;   width:82px; height:62px; transform:rotate(-7deg); }
+.pb { bottom:4%; left:9%;   width:70px; height:52px; transform:rotate(5deg);  }
+.pc { bottom:2%; right:3%;  width:78px; height:60px; transform:rotate(-3deg); }
+.pd { bottom:5%; right:10%; width:66px; height:48px; transform:rotate(8deg);  }
+.cup { position:absolute; bottom:27%; right:20%; width:17px; height:19px; background:linear-gradient(180deg,#2a1a08,#1a1006); border-radius:0 0 3px 3px; box-shadow:2px 3px 7px rgba(0,0,0,.55); }
+.cup::before { content:''; position:absolute; top:2px; left:2px; right:2px; height:5px; background:rgba(60,30,10,.7); border-radius:50%; }
+.cup::after  { content:''; position:absolute; right:-6px; top:4px; width:6px; height:8px; border:1.5px solid #2a1a08; border-radius:50%; border-left:none; }
+.ash { position:absolute; bottom:26.5%; left:19%; width:20px; height:6px; background:radial-gradient(ellipse,#4a4440,#2a2420); border-radius:50%; box-shadow:1px 2px 5px rgba(0,0,0,.5); }
+.grain { position:fixed; inset:0; pointer-events:none; z-index:9000; opacity:.2; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E"); mix-blend-mode:overlay; }
+
+/* ── TERMINAL WRAP ── */
+.tw {
+  position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  width: min(90vw, 960px);
+  display: flex; flex-direction: column; align-items: center;
+  z-index: 100;
+  filter: drop-shadow(0 24px 50px rgba(0,0,0,.85));
+}
+
+/* BEZELS */
+.bt {
+  width: 100%;
+  background: linear-gradient(180deg,#232018,#141210);
+  border: 1px solid #2e2c1e; border-bottom: none;
+  border-radius: 10px 10px 0 0;
+  padding: 6px 18px;
+  display: flex; align-items: center; justify-content: space-between;
+  box-shadow: inset 0 1px rgba(255,255,255,0.03);
+}
+.brand { font-family:'Share Tech Mono',monospace; font-size:9px; color:#3a3820; letter-spacing:.17em; }
+.leds  { display:flex; gap:7px; align-items:center; }
+.led   { width:8px; height:8px; border-radius:50%; }
+.lr { background:#cc2200; box-shadow:0 0 5px #cc2200; }
+.la { background:#4a3a00; }
+@keyframes breathe { 0%,100%{opacity:1;box-shadow:0 0 7px #00cc22} 50%{opacity:.45;box-shadow:0 0 3px #006610} }
+.lg { background:#00cc22; animation:breathe 2.2s ease-in-out infinite; }
+
+.bm {
+  width: 100%;
+  background: #141210;
+  border-left: 1px solid #2e2c1e; border-right: 1px solid #2e2c1e;
+  padding: 12px 16px; position: relative;
+}
+.bm::before { content:''; position:absolute; left:5px; top:10px; bottom:10px; width:5px; background:repeating-linear-gradient(0deg,#0a0906,#0a0906 3px,#1c1a12 3px,#1c1a12 6px); border-radius:2px; }
+.bm::after  { content:''; position:absolute; right:5px; top:10px; bottom:10px; width:5px; background:repeating-linear-gradient(0deg,#0a0906,#0a0906 3px,#1c1a12 3px,#1c1a12 6px); border-radius:2px; }
+
+/* SCREEN */
+.sg {
+  background:#050502; border:3px solid #0e0d08; border-radius:6px; padding:4px;
+  box-shadow: 0 0 0 1px #1a1810, 0 0 50px rgba(0,255,65,.1), 0 0 100px rgba(0,255,65,.04), inset 0 0 20px rgba(0,0,0,.9);
+}
+.sc {
+  position:relative; background:#010d02; border-radius:4px; overflow:hidden;
+  height: 56vh; min-height: 340px;
+}
+.sc::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 50% 30% at 30% 20%,rgba(255,255,255,0.02) 0%,transparent 100%),radial-gradient(ellipse at 50% 50%,transparent 55%,rgba(0,0,0,.6) 100%); pointer-events:none; z-index:30; border-radius:4px; }
+.sc::after  { content:''; position:absolute; inset:0; background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.13) 2px,rgba(0,0,0,0.13) 4px); pointer-events:none; z-index:31; border-radius:4px; }
+@keyframes scanmove { 0%{top:-8%} 100%{top:108%} }
+.sb { position:absolute; left:0; right:0; height:3px; background:rgba(0,255,65,.04); animation:scanmove 6s linear infinite; z-index:32; pointer-events:none; }
+@keyframes flicker { 0%,95%,100%{opacity:1} 96%{opacity:.93} 98%{opacity:.96} }
+.sci { position:relative; z-index:20; height:100%; overflow:hidden; animation:flicker 9s infinite; padding:16px 22px; display:flex; flex-direction:column; }
+
+.bb {
+  width:100%;
+  background:linear-gradient(180deg,#141210,#1c1a12);
+  border:1px solid #2e2c1e; border-top:none;
+  border-radius:0 0 10px 10px;
+  padding:7px 20px;
+  display:flex; align-items:center; justify-content:space-between;
+  box-shadow:0 8px 28px rgba(0,0,0,.8);
+}
+.cl  { display:flex; gap:8px; align-items:center; }
+.knb { width:14px; height:14px; border-radius:50%; background:radial-gradient(circle at 35% 35%,#555540,#1e1c14); border:1px solid #333320; position:relative; }
+.knb::after { content:''; position:absolute; top:2px; left:50%; width:1px; height:4px; background:#888870; transform:translateX(-50%); }
+.swt { width:20px; height:8px; background:#0e0c08; border:1px solid #2a2818; border-radius:1px; }
+.swt.on::after { content:''; position:absolute; right:1px; top:1px; width:8px; height:4px; background:#006614; border-radius:1px; }
+.swt { position:relative; }
+.swt::after { content:''; position:absolute; left:1px; top:1px; width:8px; height:4px; background:#2a2818; border-radius:1px; }
+.ml { font-family:'Share Tech Mono',monospace; font-size:7.5px; color:#252510; letter-spacing:.13em; }
+
+/* KEYBOARD */
+.kbd { width:76%; margin-top:7px; background:linear-gradient(180deg,#1c1a12,#141210); border:1px solid #2a2818; border-radius:3px 3px 5px 5px; padding:7px 12px 10px; box-shadow:0 10px 28px rgba(0,0,0,.8); display:flex; flex-direction:column; gap:3px; align-items:center; }
+.kr { display:flex; gap:2px; }
+.k  { min-width:21px; height:16px; background:linear-gradient(180deg,#252214,#1a1810); border:1px solid #2e2c1c; border-bottom:2px solid #080706; border-radius:2px; display:flex; align-items:center; justify-content:center; font-family:'Share Tech Mono',monospace; font-size:6px; color:#454230; }
+.kw { min-width:38px; } .kw2 { min-width:52px; } .kspc { min-width:120px; } .km { min-width:28px; }
+
+/* ── SCREEN UI ── */
+:root { --g:#00ff41; --gd:#00cc33; --gdim:#006614; --ghi:#80ff90; --r:#cc2200; }
+
+.th { font-size:clamp(13px,2vw,19px); color:var(--g); letter-spacing:.09em; text-shadow:0 0 10px rgba(0,255,65,.5); border-bottom:1px solid var(--gdim); padding-bottom:4px; margin-bottom:9px; display:flex; justify-content:space-between; align-items:baseline; flex-shrink:0; }
+.thr { font-size:clamp(11px,1.5vw,14px); color:var(--gdim); }
+.box { border:1px solid var(--gdim); padding:7px 11px; margin-bottom:8px; position:relative; flex-shrink:0; }
+.bxl { position:absolute; top:-9px; left:9px; background:#010d02; font-size:clamp(10px,1.3vw,13px); color:var(--gd); padding:0 6px; letter-spacing:.09em; }
+.fr  { display:flex; align-items:baseline; margin-bottom:4px; font-size:clamp(12px,1.7vw,16px); gap:3px; }
+.fl  { color:var(--gd); width:195px; flex-shrink:0; letter-spacing:.03em; }
+.fi  { background:transparent; border:none; border-bottom:1px solid var(--g); color:var(--g); font-family:'VT323',monospace; font-size:clamp(12px,1.7vw,16px); outline:none; flex:1; padding:0 3px; min-width:0; letter-spacing:.04em; }
+.fi:focus { border-bottom-color:var(--ghi); color:var(--ghi); }
+.fi::placeholder { color:var(--gdim); font-size:clamp(10px,1.4vw,13px); }
+.fs  { background:rgba(0,8,1,.8); border:1px solid var(--gdim); color:var(--gd); font-family:'VT323',monospace; font-size:clamp(12px,1.6vw,15px); padding:2px 5px; outline:none; flex:1; min-width:0; }
+.fs option { background:#010d02; color:var(--g); }
+.fs:focus { border-color:var(--g); }
+.two   { display:grid; grid-template-columns:1fr 1fr; gap:0 18px; }
+.three { display:grid; grid-template-columns:1fr 1fr 1fr; gap:5px; margin-top:5px; }
+.dg  { display:flex; flex-direction:column; gap:2px; }
+.dl  { font-size:clamp(9px,1.1vw,12px); color:var(--gdim); letter-spacing:.08em; }
+.ds  { background:rgba(0,8,1,.8); border:1px solid var(--gdim); color:var(--gd); font-family:'VT323',monospace; font-size:clamp(11px,1.4vw,14px); padding:2px 4px; outline:none; width:100%; }
+.ds:focus { border-color:var(--g); }
+.ds option { background:#010d02; color:var(--g); }
+.btn { background:transparent; border:1px solid var(--g); color:var(--g); font-family:'VT323',monospace; font-size:clamp(13px,1.7vw,17px); letter-spacing:.13em; padding:5px 14px; cursor:pointer; text-shadow:0 0 6px rgba(0,255,65,.4); transition:all .15s; white-space:nowrap; }
+.btn:hover:not(:disabled) { background:rgba(0,255,65,.08); box-shadow:0 0 12px rgba(0,255,65,.2); }
+.btn:disabled { opacity:.3; cursor:not-allowed; }
+.btn.sm  { font-size:clamp(11px,1.4vw,14px); padding:3px 10px; }
+.btn.red { border-color:var(--r); color:var(--r); text-shadow:none; }
+.btn.red:hover { background:rgba(200,34,0,.08); }
+.btn.warn { border-color:#cc8800; color:#cc8800; text-shadow:none; }
+.btn.warn:hover { background:rgba(200,130,0,.08); }
+.sb2 { font-size:clamp(10px,1.2vw,13px); color:var(--gdim); letter-spacing:.07em; border-top:1px solid #003a0a; padding-top:4px; margin-top:auto; display:flex; justify-content:space-between; flex-shrink:0; }
+@keyframes cb { 0%,49%{opacity:1} 50%,100%{opacity:0} }
+.cur { display:inline-block; animation:cb 1s infinite; color:var(--g); }
+.idle-t { font-size:clamp(12px,1.5vw,15px); color:var(--gdim); letter-spacing:.05em; padding:3px 0; }
+.err-t  { font-size:clamp(12px,1.5vw,15px); color:var(--r); padding:3px 0; }
+@keyframes lp { 0%{width:0;margin-left:0} 50%{width:55%;margin-left:15%} 100%{width:0;margin-left:100%} }
+.lbw { width:100%; height:2px; background:#003a0a; overflow:hidden; margin:9px 0; }
+.lbi { height:100%; background:var(--g); box-shadow:0 0 7px var(--g); animation:lp 1.8s ease-in-out infinite; }
+@keyframes bl2 { 0%,49%{opacity:1} 50%,100%{opacity:.15} }
+.lmsg { font-size:clamp(13px,1.7vw,17px); color:var(--g); letter-spacing:.09em; text-align:center; text-shadow:0 0 8px rgba(0,255,65,.4); }
+.lsub { font-size:clamp(10px,1.3vw,13px); color:var(--gdim); letter-spacing:.08em; animation:bl2 1.3s infinite; text-align:center; }
+.oh { font-size:clamp(15px,2.1vw,21px); color:var(--ghi); text-shadow:0 0 10px rgba(0,255,65,.5); line-height:1.1; margin-bottom:3px; letter-spacing:.04em; }
+.oby { font-size:clamp(10px,1.3vw,13px); color:var(--gd); margin-bottom:7px; letter-spacing:.04em; }
+.oimg { width:100%; max-height:120px; object-fit:cover; margin-bottom:7px; filter:sepia(.35) saturate(.55) brightness(.7) contrast(1.1); border:1px solid var(--gdim); display:block; }
+.obody { font-size:clamp(12px,1.5vw,15px); color:var(--g); line-height:1.55; white-space:pre-wrap; max-height:150px; overflow-y:auto; }
+.obody::-webkit-scrollbar { width:3px; }
+.obody::-webkit-scrollbar-thumb { background:var(--gdim); }
+.act { display:flex; gap:6px; margin-top:7px; padding-top:6px; border-top:1px solid #003a0a; flex-wrap:wrap; }
+.or { display:flex; gap:8px; align-items:flex-end; margin-bottom:4px; }
+.view { display:none; flex-direction:column; flex:1; min-height:0; }
+.view.on { display:flex; }
+.outbox { border:1px solid var(--gdim); padding:7px 11px; flex:1; min-height:0; display:flex; flex-direction:column; position:relative; }
+.outscr { flex:1; overflow-y:auto; min-height:0; }
+.outscr::-webkit-scrollbar { width:3px; }
+.outscr::-webkit-scrollbar-thumb { background:var(--gdim); }
+
+/* ── SETTINGS PANEL ── */
+.settings-icon {
+  position:absolute; top:14px; right:22px; z-index:50;
+  background:transparent; border:1px solid var(--gdim);
+  color:var(--gdim); font-family:'VT323',monospace;
+  font-size:13px; padding:2px 8px; cursor:pointer;
+  letter-spacing:.1em; transition:all .15s;
+}
+.settings-icon:hover { border-color:var(--g); color:var(--g); }
+
+.settings-overlay {
+  position:absolute; inset:0;
+  background:rgba(1,13,2,.96);
+  z-index:200;
+  display:none;
+  flex-direction:column;
+  padding:18px 22px;
+  border-radius:4px;
+}
+.settings-overlay.open { display:flex; }
+.set-hdr { font-size:18px; color:var(--g); letter-spacing:.1em; text-shadow:0 0 8px rgba(0,255,65,.4); border-bottom:1px solid var(--gdim); padding-bottom:5px; margin-bottom:14px; display:flex; justify-content:space-between; align-items:baseline; }
+.set-section { font-size:12px; color:var(--gdim); letter-spacing:.1em; text-transform:uppercase; margin-bottom:6px; border-left:2px solid var(--gdim); padding-left:7px; }
+.set-note { font-size:13px; color:var(--gdim); line-height:1.7; margin-bottom:10px; }
+.set-note a { color:var(--gd); }
+.key-row { display:flex; gap:8px; align-items:center; margin-bottom:12px; }
+.key-inp { background:rgba(0,8,1,.8); border:1px solid var(--gdim); color:var(--g); font-family:'Share Tech Mono',monospace; font-size:12px; padding:6px 10px; outline:none; flex:1; letter-spacing:.04em; }
+.key-inp:focus { border-color:var(--g); }
+.key-status { font-size:13px; margin-top:4px; letter-spacing:.06em; }
+.key-status.ok  { color:var(--gd); }
+.key-status.err { color:var(--r); }
+.key-status.none { color:var(--gdim); }
+.set-divider { border-top:1px solid #003a0a; margin:12px 0; }
+</style>
+</head>
+<body>
+
+<!-- ROOM -->
+<div class="room">
+  <div class="pipe p1"></div><div class="pipe p2"></div>
+  <div class="pipe p3"></div><div class="pipe p4"></div>
+  <div class="cp"></div>
+  <div class="desk">
+    <div class="paper pa">CLASSIFIED&#10;REF: DS-8821-B&#10;[REDACTED]&#10;per directive 7&#10;see attachment C</div>
+    <div class="paper pb">MEMO&#10;TO: ALL STAFF&#10;RE: OPERATION X&#10;DO NOT DISTRIBUTE</div>
+    <div class="paper pc">EYES ONLY&#10;DISTRIBUTION: LTD&#10;BURN AFTER READ&#10;FILE: 1974/44</div>
+    <div class="paper pd">URGENT&#10;CODE WORD: PIGEON&#10;AWAIT ORDERS</div>
+    <div class="cup"></div>
+    <div class="ash"></div>
+  </div>
+</div>
+<div class="grain"></div>
+
+<!-- TERMINAL -->
+<div class="tw">
+
+  <!-- TOP BEZEL -->
+  <div class="bt">
+    <div class="brand">DEEPSTATE COMPUTING CORP · MODEL DS-1974 · SERIES III</div>
+    <div class="leds"><div class="led lr"></div><div class="led la"></div><div class="led la"></div><div class="led lg"></div></div>
+  </div>
+
+  <!-- SCREEN HOUSING -->
+  <div class="bm">
+    <div class="sg">
+      <div class="sc">
+        <div class="sb"></div>
+        <div class="sci">
+
+          <!-- SETTINGS ICON (always visible) -->
+          <button class="settings-icon" onclick="toggleSettings()" id="settingsBtn">⚙ SETTINGS</button>
+
+          <!-- SETTINGS OVERLAY -->
+          <div class="settings-overlay" id="settingsOverlay">
+            <div class="set-hdr">
+              <span>DSA // SETTINGS</span>
+              <button class="btn sm" onclick="toggleSettings()">[ CLOSE ]</button>
+            </div>
+
+            <div class="set-section">API KEY — REQUIRED</div>
+            <div class="set-note">
+              Get your free key at <strong>console.anthropic.com</strong><br>
+              → Sign up → API Keys → Create Key → paste below.<br>
+              Your key is stored in your browser only, never on this server.
+            </div>
+
+            <div class="key-row">
+              <input class="key-inp" id="keyInp" type="password" placeholder="sk-ant-api03-...">
+              <button class="btn sm" onclick="saveKey()">[ SAVE KEY ]</button>
+              <button class="btn sm red" onclick="clearKey()">[ CLEAR ]</button>
+            </div>
+            <div class="key-status none" id="keyStatus">NO KEY STORED</div>
+
+            <div class="set-divider"></div>
+
+            <div class="set-section">MODEL</div>
+            <div class="fr" style="margin-top:6px">
+              <span class="fl" style="width:160px;font-size:14px">ACTIVE MODEL...:</span>
+              <select class="fs" id="modelSel">
+                <option value="claude-opus-4-5">CLAUDE OPUS 4.5 (BEST)</option>
+                <option value="claude-sonnet-4-5">CLAUDE SONNET 4.5 (FASTER)</option>
+                <option value="claude-haiku-4-5-20251001">CLAUDE HAIKU 4.5 (FASTEST)</option>
+              </select>
+            </div>
+
+            <div class="set-divider"></div>
+            <div class="set-note" style="margin:0">
+              <strong style="color:var(--gd)">MAX PLAN NOTE:</strong> Your Max plan is for claude.ai only.<br>
+              The API requires a separate key — but free tier covers hundreds of articles/month.
+            </div>
+          </div>
+
+          <!-- VIEW: PROFILE -->
+          <div class="view on" id="vP">
+            <div class="th"><span>DEEP STATE ARCHIVES // OPERATIVE SETUP</span><span class="thr" id="clk">--:--:--</span></div>
+            <div class="box">
+              <div class="bxl">[ JOURNALIST COVER IDENTITY — ALL FIELDS SHAPE THE ARTICLE ]</div>
+              <div class="two">
+                <div class="fr"><span class="fl">NAME..........:</span><input class="fi" id="pf-name" placeholder="e.g. BOB MCNALLY"></div>
+                <div class="fr"><span class="fl">PUBLICATION...:</span><input class="fi" id="pf-alias" placeholder="e.g. THE SHADOW TIMES"></div>
+              </div>
+              <div class="fr"><span class="fl">BELIEF SYSTEM.:</span>
+                <select class="fs" id="pf-belief">
+                  <option value="deep state truther">DEEP STATE TRUTHER</option>
+                  <option value="libertarian absolutist">LIBERTARIAN ABSOLUTIST</option>
+                  <option value="NWO skeptic">NWO SKEPTIC</option>
+                  <option value="techno-paranoid luddite">TECHNO-PARANOID LUDDITE</option>
+                  <option value="rogue academic">ROGUE ACADEMIC</option>
+                  <option value="alien disclosure advocate">ALIEN DISCLOSURE ADVOCATE</option>
+                  <option value="financial collapse prepper">FINANCIAL COLLAPSE PREPPER</option>
+                </select>
+              </div>
+              <div class="fr"><span class="fl">OBSESSIONS....:</span><input class="fi" id="pf-int" placeholder="e.g. pigeons, bunkers, fluoride, 5G"></div>
+              <div class="fr"><span class="fl">BIO...........:</span><input class="fi" id="pf-bio" placeholder="e.g. retired postal worker, never trusted government"></div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;flex-shrink:0;padding-top:4px">
+              <span class="idle-t">FILL IN FIELDS — PRESS ESTABLISH <span class="cur">█</span></span>
+              <button class="btn" onclick="submitProfile()">[ ESTABLISH OPERATIVE ]</button>
+            </div>
+            <div class="sb2">
+              <span>SYS: READY</span><span>MEM: 64K</span>
+              <span id="keyIndicator" style="color:var(--r)">KEY: NOT SET — OPEN SETTINGS ⚙</span>
+            </div>
+          </div>
+
+          <!-- VIEW: OPS -->
+          <div class="view" id="vO">
+            <div class="th">
+              <span>DSA//OPS — <span id="opN" style="color:var(--ghi)">—</span></span>
+              <span class="thr" id="clk2">--:--:--</span>
+            </div>
+            <div class="box">
+              <div class="bxl">[ MISSION PARAMETERS ]</div>
+              <div class="or">
+                <div style="flex:1;min-width:0">
+                  <div style="font-size:11px;color:var(--gdim);letter-spacing:.07em;margin-bottom:2px">TARGET SUBJECT</div>
+                  <input class="fi" id="topic" placeholder="ANY TOPIC, HEADLINE OR EVENT..." style="width:100%;font-size:clamp(13px,1.7vw,16px)">
+                </div>
+                <button class="btn" id="goBtn" onclick="generate()">[ INITIATE ]</button>
+              </div>
+              <div class="three">
+                <div class="dg"><div class="dl">HUMOR MODE</div><select class="ds" id="ddH"><option value="dry and deadpan">DRY &amp; DEADPAN</option><option value="absurdist">ABSURDIST</option><option value="satirical and sharp">SATIRICAL/SHARP</option><option value="unhinged and chaotic">UNHINGED</option><option value="faux academic">FAUX ACADEMIC</option><option value="tabloid sensationalist">TABLOID</option></select></div>
+                <div class="dg"><div class="dl">MOOD</div><select class="ds" id="ddM"><option value="paranoid and urgent">PARANOID/URGENT</option><option value="smug and knowing">SMUG/KNOWING</option><option value="outraged">OUTRAGED</option><option value="eerily calm">EERILY CALM</option><option value="conspiratorial whisper">CONSPIRATORIAL</option></select></div>
+                <div class="dg"><div class="dl">WRITE STYLE</div><select class="ds" id="ddS"><option value="gonzo journalism">GONZO JOURNALISM</option><option value="fake academic paper">FAKE ACADEMIC</option><option value="breathless tabloid">BREATHLESS TABLOID</option><option value="leaked memo format">LEAKED MEMO</option><option value="stream of consciousness">STREAM/CONSCIOUS</option></select></div>
+              </div>
+            </div>
+
+            <div class="outbox">
+              <div class="bxl">[ TRANSMISSION OUTPUT ]</div>
+              <div id="sIdle" class="idle-t">AWAITING ORDERS... ENTER SUBJECT AND PRESS INITIATE <span class="cur">█</span></div>
+              <div id="sLoad" style="display:none;padding:10px 0;text-align:center">
+                <div class="lmsg" id="lmsg">ACCESSING CLASSIFIED FILES...</div>
+                <div class="lbw"><div class="lbi"></div></div>
+                <div class="lsub">ENCRYPTING TRANSMISSION — STAND BY</div>
+              </div>
+              <div id="sErr" style="display:none" class="err-t"></div>
+              <div id="sOut" style="display:none;flex:1;min-height:0;flex-direction:column">
+                <div class="outscr">
+                  <div style="font-size:11px;color:var(--r);margin-bottom:5px;letter-spacing:.07em">*** SATIRE &amp; PARODY ONLY — NOT FACTUAL ***</div>
+                  <div class="oh" id="oH"></div>
+                  <div class="oby" id="oB"></div>
+                  <img class="oimg" id="oI" src="" alt="" onerror="this.style.display='none'">
+                  <div class="obody" id="oT"></div>
+                </div>
+                <div class="act">
+                  <button class="btn sm" onclick="dlArt()">[ ⬇ ARTICLE ]</button>
+                  <button class="btn sm" onclick="dlImg()">[ ⬇ IMAGE ]</button>
+                  <button class="btn sm red" onclick="clearOp()">[ ✕ CLEAR ]</button>
+                </div>
+              </div>
+            </div>
+
+            <div style="display:flex;justify-content:space-between;align-items:center;flex-shrink:0;padding-top:5px">
+              <button class="btn sm" onclick="editOp()">[ EDIT OPERATIVE ]</button>
+              <div style="font-size:clamp(10px,1.2vw,13px);color:var(--gdim);letter-spacing:.06em">
+                OP: <span id="sN">—</span> &nbsp;|&nbsp; DISPATCHES: <span id="sCnt">0</span> &nbsp;|&nbsp; STATUS: <span id="sSt">STANDBY</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOTTOM BEZEL -->
+  <div class="bb">
+    <div class="cl"><div class="swt on"></div><div class="swt"></div><div class="swt on"></div><div class="knb"></div><div class="knb"></div></div>
+    <div class="ml">DEEPSTATE COMPUTING CORP // DS-1974 // SERIES III // 64K // © MCMLXXIV</div>
+    <div class="cl"><div class="knb"></div><div class="swt on"></div><div class="swt"></div><div class="led la" style="width:7px;height:7px"></div><div class="led lg" style="width:7px;height:7px"></div></div>
+  </div>
+
+  <!-- KEYBOARD -->
+  <div class="kbd">
+    <div class="kr"><div class="k">ESC</div><div class="k">F1</div><div class="k">F2</div><div class="k">F3</div><div class="k">F4</div><div class="k">F5</div><div class="k">F6</div><div class="k">F7</div><div class="k">F8</div><div class="k">F9</div><div class="k">F10</div><div class="k">DEL</div><div class="k">CLR</div></div>
+    <div class="kr"><div class="k">~</div><div class="k">1</div><div class="k">2</div><div class="k">3</div><div class="k">4</div><div class="k">5</div><div class="k">6</div><div class="k">7</div><div class="k">8</div><div class="k">9</div><div class="k">0</div><div class="k">-</div><div class="k">=</div><div class="k kw">BKSP</div></div>
+    <div class="kr"><div class="k kw">TAB</div><div class="k">Q</div><div class="k">W</div><div class="k">E</div><div class="k">R</div><div class="k">T</div><div class="k">Y</div><div class="k">U</div><div class="k">I</div><div class="k">O</div><div class="k">P</div><div class="k">[</div><div class="k">]</div><div class="k">\</div></div>
+    <div class="kr"><div class="k kw2">CTRL</div><div class="k">A</div><div class="k">S</div><div class="k">D</div><div class="k">F</div><div class="k">G</div><div class="k">H</div><div class="k">J</div><div class="k">K</div><div class="k">L</div><div class="k">;</div><div class="k">'</div><div class="k kw">RETURN</div></div>
+    <div class="kr"><div class="k kw2">SHIFT</div><div class="k">Z</div><div class="k">X</div><div class="k">C</div><div class="k">V</div><div class="k">B</div><div class="k">N</div><div class="k">M</div><div class="k">,</div><div class="k">.</div><div class="k">/</div><div class="k kw">SHIFT</div></div>
+    <div class="kr"><div class="k km">ALT</div><div class="k kspc"></div><div class="k km">ALT</div></div>
+  </div>
+
+</div>
+
+<script>
+let j=null, cnt=0, lastArt=null, lastImg=null;
+const MSGS=['ACCESSING CLASSIFIED FILES...','CROSS-REFERENCING SHADOW NETWORKS...','DECRYPTING RABBIT HOLE DATA...','CONSULTING UNNAMED SOURCES...','BYPASSING FACT-CHECK PROTOCOLS...','CONNECTING THE DOTS — THERE ARE MANY...','ALERTING THE ILLUMINATI...','BURNING AFTER READING...','INITIATING COVER-UP SUBROUTINE...'];
+
+// ── CLOCK ─────────────────────────────────────────────────────────────────────
+setInterval(()=>{const t=new Date().toTimeString().slice(0,8);['clk','clk2'].forEach(id=>{const e=document.getElementById(id);if(e)e.textContent=t;});},1000);
+
+// ── KEY MANAGEMENT ────────────────────────────────────────────────────────────
+function getKey(){ return localStorage.getItem('dsa_apikey')||''; }
+
+function updateKeyIndicator(){
+  const k=getKey();
+  const ind=document.getElementById('keyIndicator');
+  const st=document.getElementById('keyStatus');
+  if(k){
+    if(ind) { ind.textContent='KEY: SET ✓'; ind.style.color='var(--gd)'; }
+    if(st)  { st.textContent='KEY STORED IN BROWSER ✓'; st.className='key-status ok'; }
+    const inp=document.getElementById('keyInp');
+    if(inp) inp.placeholder='sk-ant-... (key stored, paste to replace)';
+  } else {
+    if(ind) { ind.textContent='KEY: NOT SET — OPEN SETTINGS ⚙'; ind.style.color='var(--r)'; }
+    if(st)  { st.textContent='NO KEY STORED'; st.className='key-status none'; }
+  }
+}
+
+function saveKey(){
+  const val=document.getElementById('keyInp').value.trim();
+  if(!val){ alert('Paste your API key first'); return; }
+  if(!val.startsWith('sk-')){ alert('Key should start with sk-ant-...'); return; }
+  localStorage.setItem('dsa_apikey', val);
+  document.getElementById('keyInp').value='';
+  updateKeyIndicator();
+  document.getElementById('keyStatus').textContent='KEY SAVED SUCCESSFULLY ✓';
+  document.getElementById('keyStatus').className='key-status ok';
+}
+
+function clearKey(){
+  localStorage.removeItem('dsa_apikey');
+  document.getElementById('keyInp').value='';
+  updateKeyIndicator();
+}
+
+// ── SETTINGS ─────────────────────────────────────────────────────────────────
+function toggleSettings(){
+  const o=document.getElementById('settingsOverlay');
+  o.classList.toggle('open');
+  updateKeyIndicator();
+}
+
+// ── VIEWS ─────────────────────────────────────────────────────────────────────
+function sv(id){document.querySelectorAll('.view').forEach(v=>v.classList.remove('on'));document.getElementById(id).classList.add('on');}
+function sa(id){
+  ['sIdle','sLoad','sErr','sOut'].forEach(s=>{
+    const e=document.getElementById(s); if(!e) return;
+    e.style.display = s===id ? (s==='sOut'?'flex':'block') : 'none';
+  });
+}
+
+// ── PROFILE ───────────────────────────────────────────────────────────────────
+function submitProfile(){
+  const name=document.getElementById('pf-name').value.trim();
+  if(!name){alert('ENTER OPERATIVE NAME');return;}
+  j={
+    name:name.toUpperCase(),
+    alias:document.getElementById('pf-alias').value.trim().toUpperCase()||'THE UNDERGROUND PRESS',
+    belief:document.getElementById('pf-belief').value,
+    interests:document.getElementById('pf-int').value.trim()||'surveillance, hidden patterns',
+    bio:document.getElementById('pf-bio').value.trim()||'journalist of unknown origin'
+  };
+  document.getElementById('opN').textContent=j.name;
+  document.getElementById('sN').textContent=j.name;
+  sa('sIdle'); sv('vO');
+}
+
+function editOp(){
+  if(j){
+    document.getElementById('pf-name').value=j.name;
+    document.getElementById('pf-alias').value=j.alias;
+    document.getElementById('pf-int').value=j.interests;
+    document.getElementById('pf-bio').value=j.bio;
+  }
+  sv('vP');
+}
+
+// ── GENERATE ─────────────────────────────────────────────────────────────────
+async function generate(){
+  const topic=document.getElementById('topic').value.trim();
+  if(!topic){document.getElementById('topic').focus();return;}
+
+  const apiKey=getKey();
+  if(!apiKey){
+    toggleSettings();
+    document.getElementById('keyStatus').textContent='KEY REQUIRED — ENTER YOUR API KEY BELOW';
+    document.getElementById('keyStatus').className='key-status err';
+    return;
+  }
+
+  document.getElementById('goBtn').disabled=true;
+  document.getElementById('sSt').textContent='ACTIVE';
+  sa('sLoad');
+
+  let mi=0;
+  const iv=setInterval(()=>{document.getElementById('lmsg').textContent=MSGS[mi++%MSGS.length];},900);
+
+  const model=document.getElementById('modelSel')?.value||'claude-opus-4-5';
+
+  try{
+    const res=await fetch('/api/generate',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','x-api-key':apiKey},
+      body:JSON.stringify({
+        journalist:j, topic,
+        humor:document.getElementById('ddH').value,
+        mood:document.getElementById('ddM').value,
+        style:document.getElementById('ddS').value,
+        model
+      })
+    });
+
+    const data=await res.json();
+
+    if(!res.ok){
+      if(data.error==='INVALID_KEY'||data.error==='NO_KEY'){
+        clearInterval(iv);
+        toggleSettings();
+        document.getElementById('keyStatus').textContent='KEY REJECTED — CHECK AND RE-ENTER';
+        document.getElementById('keyStatus').className='key-status err';
+        sa('sIdle'); document.getElementById('sSt').textContent='ERROR';
+        return;
+      }
+      throw new Error(data.message||data.error||'Server error');
+    }
+
+    clearInterval(iv); lastArt=data; cnt++;
+    document.getElementById('sCnt').textContent=cnt;
+    document.getElementById('oH').textContent=data.headline||'';
+    document.getElementById('oB').textContent=`BY ${j.name} // ${j.alias} // ${data.byline||''} // SATIRE`;
+    document.getElementById('oT').textContent=data.article||'';
+    lastImg=data.imageUrl||null;
+    const img=document.getElementById('oI');
+    if(lastImg){img.src=lastImg;img.style.display='block';}
+    else{img.style.display='none';}
+    document.getElementById('outscr')||document.getElementById('sOut');
+    sa('sOut');
+
+  }catch(err){
+    clearInterval(iv);
+    document.getElementById('sErr').textContent=`// TRANSMISSION FAILED: ${err.message}`;
+    sa('sErr');
+    document.getElementById('sSt').textContent='ERROR';
+  }finally{
+    document.getElementById('goBtn').disabled=false;
+  }
+}
+
+// ── DOWNLOAD ─────────────────────────────────────────────────────────────────
+function dlArt(){
+  if(!lastArt)return;
+  const t=['DEEP STATE ARCHIVES // SATIRE & PARODY ONLY','='.repeat(54),'',lastArt.headline,lastArt.subheadline||'','',`BY ${j.name} // ${j.alias}`,lastArt.byline||'',new Date().toUTCString(),'','-'.repeat(54),'',lastArt.article,'','='.repeat(54),'DISCLAIMER: Satire and parody for entertainment only. All fictional.'].join('\n');
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([t],{type:'text/plain'}));a.download=`dsa-${j.name.replace(/\s+/g,'-').toLowerCase()}-${Date.now()}.txt`;a.click();
+}
+function dlImg(){if(lastImg)window.open(lastImg,'_blank');}
+function clearOp(){
+  lastArt=null;lastImg=null;
+  document.getElementById('topic').value='';
+  document.getElementById('oI').style.display='none';
+  document.getElementById('sSt').textContent='STANDBY';
+  sa('sIdle');
+}
+
+// ── KEYBOARD ─────────────────────────────────────────────────────────────────
+document.addEventListener('keydown',e=>{if(e.key==='Enter'&&document.activeElement.id==='topic')generate();});
+
+// ── INIT ─────────────────────────────────────────────────────────────────────
+updateKeyIndicator();
+</script>
+</body>
+</html>
